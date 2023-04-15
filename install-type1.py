@@ -30,7 +30,7 @@ def setup_temp ():
 	if not __main__.keep_temp_dir_p:
 		__main__.temp_dir = tempfile.mktemp (__main__.program_name)
 	try:
-		os.mkdir (__main__.temp_dir, 0777)
+		os.mkdir (__main__.temp_dir, 0o0777)
 	except OSError:
 		pass
 
@@ -139,7 +139,7 @@ for (o,a) in options:
 
 namemaps = map (tex_find_file, namemaps)
 
-if base_pfb_dir[-1] <> '/':
+if base_pfb_dir[-1] != '/':
 	base_pfb_dir += '/'
 
 
@@ -225,7 +225,7 @@ def convert_one_family (family, pfb_files, ps_to_berry_mapping):
 		mkdir_if_not_exist (tempdir)
 		os.system ('rm -f %s/*' % tempdir)
 	else:
-		os.mkdir (tempdir, 0700)
+		os.mkdir (tempdir, 0o0700)
 
 	curdir = os.getcwd()
 	os.chdir (tempdir)
@@ -316,5 +316,3 @@ for (fam, pfbs) in font_sets.items():
 
 	sys.stdout.write ('Family %s (%s)\n' % (fam, string.join (bases)))
 	convert_one_family (fam, pfbs, psnamemap)
-
-

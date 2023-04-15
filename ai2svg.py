@@ -25,7 +25,7 @@ import string
 
 
 def help():
-	print '''ai2svg.py -- simple minded Adobe Illustrator to SVG convertor
+	print('''ai2svg.py -- simple minded Adobe Illustrator to SVG convertor
 
 Usage:
 
@@ -41,7 +41,7 @@ Description
  cleanly written, so it is easily extendable. Please mail patches to
  hanwen@xs4all.nl
 
-'''
+''')
 
 for (o, a) in options:
 	if o == '-h' or o == '--help':
@@ -161,13 +161,13 @@ def process_line (state, l):
 	found = 0
 	for (regex, proc) in dispatch_list:
 		m = regex.match (l)
-		if m <> None:
+		if m is not None:
 			found = 1
 			proc (state, m)
 			break
 		
 	if not found:
-		print  'ignoring ', l
+		print('ignoring ', l)
 
 
 def dump_output (state, base):
@@ -194,3 +194,4 @@ for f in files:
 
 
 	dump_output (ai_state, base)
+
